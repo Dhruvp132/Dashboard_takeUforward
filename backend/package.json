@@ -1,7 +1,7 @@
 {
   "name": "backend",
   "scripts": {
-    "build": "tsx build src/index.ts",
+    "build": "tsc",
     "dev": "tsx watch src/index.ts"
   },
   "dependencies": {
@@ -13,6 +13,7 @@
   "devDependencies": {
     "@types/node": "^20.11.17",
     "prisma": "^5.18.0",
-    "tsx": "^4.7.1"
+    "tsx": "^4.7.1",
+    "typescript": "^5.5.4"
   }
 }
