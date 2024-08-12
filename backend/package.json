@@ -1,8 +1,9 @@
 {
   "name": "backend",
   "scripts": {
-    "build": "tsc",
-    "dev": "tsx watch src/index.ts"
+    "build": "npx tsc -b",
+    "dev": "tsx watch src/index.ts",
+    "start" : "node dist/index.js"
   },
   "dependencies": {
     "@hono/node-server": "^1.12.0",
