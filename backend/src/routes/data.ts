@@ -1,6 +1,6 @@
 import { Hono } from "hono";
 import z from "zod";
-import { PrismaClient } from '@prisma/client';
+import prisma from '../prismaClient';
 
 export const dataRouter = new Hono<{
     Bindings: {
@@ -17,8 +17,6 @@ const dataInput = z.object({
 });
 
 dataRouter.post('/update', async (c) => {
-    const prisma = new PrismaClient();
-
     const body = await c.req.json();
 
     const validationResult = dataInput.safeParse(body);
@@ -62,8 +60,6 @@ dataRouter.post('/update', async (c) => {
 });
 
 dataRouter.get('/desc', async (c) => {
-    const prisma = new PrismaClient();
-
     try {
         const data = await prisma.data.findUnique({
             where: { id: 1 },
