@@ -1,11 +1,15 @@
 import { Hono } from "hono";
 import z from "zod";
-import prisma from '../prismaClient';
+import { PrismaClient } from '@prisma/client/edge';
+import { withAccelerate } from '@prisma/extension-accelerate';
 
 export const dataRouter = new Hono<{
-    Bindings: {
-        DATABASE_URL: string;
+    Bindings : {
+        DATABASE_URL : string,
     },
+    Variables : {
+        userId : string;
+    }
 }>();
 
 // Zod schema for validation
@@ -17,8 +21,10 @@ const dataInput = z.object({
 });
 
 dataRouter.post('/update', async (c) => {
+    const prisma = new PrismaClient({
+        datasourceUrl: c.env.DATABASE_URL,
+    }).$extends(withAccelerate());
     const body = await c.req.json();
-
     const validationResult = dataInput.safeParse(body);
 
     if (!validationResult.success) {
@@ -60,6 +66,9 @@ dataRouter.post('/update', async (c) => {
 });
 
 dataRouter.get('/desc', async (c) => {
+    const prisma = new PrismaClient({
+        datasourceUrl: c.env.DATABASE_URL,
+    }).$extends(withAccelerate());
     try {
         const data = await prisma.data.findUnique({
             where: { id: 1 },

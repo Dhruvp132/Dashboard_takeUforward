@@ -44,7 +44,7 @@ export const UpdateTimer = () => {
     setIsLoading(true); // Show loader
 
     try {
-      await axios.post('http://localhost:3000/api/v1/update', {
+      await axios.post(' https://back.dhruvpatel13210.workers.dev/api/v1/update', {
         date: day.toString(),
         month: monthNumber.toString(),
         year: yearNumber.toString(),
@@ -52,7 +52,7 @@ export const UpdateTimer = () => {
       });
 
       navigate('/'); // Redirect to '/'
-    } catch (error) {
+    } catch {
       alert('Please try again'); // Show alert on error
     } finally {
       setIsSubmitting(false);

@@ -38,7 +38,7 @@ export const Timer = () => {
     useEffect(() => {
         const fetchDeadline = async () => {
             try {
-                const response = await fetch("http://localhost:3000/api/v1/desc");
+                const response = await fetch("https://back.dhruvpatel13210.workers.dev/api/v1/desc");
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
