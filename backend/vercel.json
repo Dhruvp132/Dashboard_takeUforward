@@ -1,16 +1,6 @@
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "src/index.ts",
-        "use": "@vercel/node"
-      }
-    ],
-    "rewrites": [
-      {
-        "source": "/(.*)",
-        "destination": "/api"
-      }
-    ]
-  }
+  "version": 2,
+  "installCommand" : "npm install",
+  "buildCommand" : "npx tsc -b"
+}
   
